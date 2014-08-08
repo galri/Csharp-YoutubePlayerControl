@@ -18,18 +18,23 @@ A usercontrols that wraps a [Awesomiums WebControl](http://www.awesomium.com). T
 
 
 ###How to use the controls.
-iseditble
-
 ####"xaml" properties.
 properties that are meant to be set at startup. These have no effect the rest of the lifehood of the controll.
 - UpstartStartVideoID
 - ShowControls: Also known as chromeless. 
 ####normal properties and functions
+iseditble must be true for the normal properties to work, there is also an event that fires when iseditble becomes true, called "BecomeEditble".
 - VideoID: What movie to play. [how to find id](https://www.youtube.com/watch?v=EKyirtVHsK0) 
 - Quality: The quality that videos shall be played in.  If quality choosen is higher then available, the player will set the highest for the video.
 - Volume. From 0 (muted) to 100. 
-- PlayerStatus
-- Duration
-- Progress
-- availableQualitys
-- AutoPlay
+- PlayerStatus: What state the player is in. 
+  1. unstarted
+  2. ended
+  3. playing
+  4. paused
+  5. buffering
+  6. video cued
+- Duration: How long the video is in seconds.
+- Progress: How long video has progressed in seconds.
+- availableQualitys: lists all the qualitys the video can use.
+- AutoPlay: 
