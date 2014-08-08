@@ -21,7 +21,7 @@ A usercontrols that wraps a [Awesomiums WebControl](http://www.awesomium.com). T
 ####"xaml" properties.
 properties that are meant to be set at startup, as in the design view. These properties have no effect the rest of the lifehood of the controll.
 - UpstartStartVideoID
-- ShowControls: Also known as chromeless. 
+- ShowControls: False is also known as chromeless player. 
 
 ####normal properties and functions
 The controls "iseditble" must be true for the normal properties to work, there is also an event that fires when iseditble becomes true, called "BecomeEditble".
