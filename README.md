@@ -19,12 +19,12 @@ A usercontrols that wraps a [Awesomiums WebControl](http://www.awesomium.com). T
 
 ###How to use the controls.
 ####"xaml" properties.
-properties that are meant to be set at startup. These have no effect the rest of the lifehood of the controll.
+properties that are meant to be set at startup, as in the design view. These properties have no effect the rest of the lifehood of the controll.
 - UpstartStartVideoID
 - ShowControls: Also known as chromeless. 
 
 ####normal properties and functions
-iseditble must be true for the normal properties to work, there is also an event that fires when iseditble becomes true, called "BecomeEditble".
+The controls "iseditble" must be true for the normal properties to work, there is also an event that fires when iseditble becomes true, called "BecomeEditble".
 - VideoID: What movie to play. [how to find id](https://www.youtube.com/watch?v=EKyirtVHsK0) 
 - Quality: The quality that videos shall be played in.  If quality choosen is higher then available, the player will set the highest for the video.
 - Volume. From 0 (muted) to 100. 
