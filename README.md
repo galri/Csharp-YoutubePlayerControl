@@ -39,3 +39,19 @@ iseditble must be true for the normal properties to work, there is also an event
 - Progress: How long video has progressed in seconds.
 - availableQualitys: lists all the qualitys the video can use.
 - AutoPlay: 
+
+####Events
+Events for each status change:
+  1. VideoUnstarted
+  2. VideoEnded
+  3. VideoPlaying
+  4. VideoPaused
+  5. VideoBuffering
+  6. VideoCued
+  
+Events for errors:
+  1. VideoUnEmbeddableError
+  2. VideoNotFoundError
+
+And a Event for when normal properties can be used:
+  1. BecomeEditble
