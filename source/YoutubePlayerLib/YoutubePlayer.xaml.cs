@@ -513,9 +513,9 @@ namespace YoutubePlayerLib
         {
             //set up connection to javascript and pass over values.
             jsobject = web.CreateGlobalJavascriptObject("jsobject");
-            jsobject.Bind("stateChanged", false, youtubeStateChanged);
-            jsobject.Bind("error", false, youtubeError);
-            jsobject.Bind("playerReady", false, youtubeReady);
+            //jsobject.Bind("stateChanged", false, youtubeStateChanged);
+            //jsobject.Bind("error", false, youtubeError);
+            //jsobject.Bind("playerReady", false, youtubeReady);
             
             jsobject["control"] = myShowControls ? 1 : 0;
             jsobject["upstartVideoId"] = myUpstartVideoID == null ? "": myUpstartVideoID;

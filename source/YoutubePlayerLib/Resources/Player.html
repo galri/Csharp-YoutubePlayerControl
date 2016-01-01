@@ -1,0 +1,82 @@
+<html>
+	<head>
+	<meta charset='UTF-8' />
+	<style type='text/css'>
+	body {
+		overflow:hidden;
+	}
+	#player{height:95%; width: 100%;}
+	</style>
+	</head>
+	<body>
+	<div id='player'></div>
+		<script type='text/javascript' src='http://www.youtube.com/player_api'></script>
+		<script type='text/javascript'>
+			//holds on to player object
+			var player;
+
+			//create youtubeplayer
+			function onYouTubePlayerAPIReady() {
+				player = new YT.Player('player', {
+					height: '100px',
+					width: '100px',	
+					videoId: jsobject['upstartVideoId'],
+					frameborder: '1',
+					playerVars: { 'autoplay': 0, 'controls': jsobject['control'] },
+					events: { 
+					'onReady': onPlayerReady,
+					'onStateChange': onPlayerStateChange,
+					'onError': onPlayerError
+					}
+				});
+			}
+
+			// autoplay video
+			function onPlayerReady(event) {
+				jsobject.playerReady();
+			}
+
+			// when video ends
+			function onPlayerStateChange(event) { 
+				jsobject.stateChanged(event.data);
+			}
+	
+			function onPlayerError(errorCode){
+				jsobject.error(errorCode.data);
+			}
+	
+			function cueVideo(id, quality){
+				//ready's the next movie.
+				player.cueVideoById(id,0,quality);
+				//hides splash just in case.
+				hideSplash();
+			}
+	
+			//change video
+			function changePlayerVideo(id,quality){
+				player.loadVideoById(id,0,quality);
+				hideSplash();
+			}
+	
+			function changePlayerQuality(quality){
+				player.setPlaybackQuality(quality);
+			}
+	
+			function getPlayerUrl(){
+				return player.getVideoUrl();
+			}
+	
+			function showSplash(){
+				document.getElementById('splash').style.zIndex = '+10';
+			}
+	
+			function hideSplash(){
+				document.getElementById('splash').style.zIndex = '-10';
+			}
+
+			function test(){
+				alert(jsobject['control']);
+			}
+		</script>
+	</body>
+</html>
