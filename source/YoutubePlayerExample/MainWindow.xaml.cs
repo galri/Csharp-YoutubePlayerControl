@@ -23,16 +23,12 @@ namespace YoutubePlayerExample
         public MainWindow()
         {
             InitializeComponent();
+            TxtVideoId.Text = "YuOBzWF0Aws";
         }
 
         private void UpdateVideoId(object sender, RoutedEventArgs e)
         {
-            TxtVideoId.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            LblGetState.Content = Player.State;
+            Player.GetBindingExpression(YoutubePlayerLib.Cef.CefYoutubeController.VideoIdProperty).UpdateSource();
         }
     }
 }

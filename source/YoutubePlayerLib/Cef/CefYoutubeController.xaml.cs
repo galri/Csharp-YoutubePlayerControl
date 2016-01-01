@@ -188,11 +188,22 @@ namespace YoutubePlayerLib.Cef
                 Console.WriteLine(string.Format("Trying to call CheckForStartupSettings after already being called once!"));
             }
         }
+
+        //private void SetStartupId(object sender, LoadingStateChangedEventArgs e)
+        //{
+        //    if (WebBrowser != null)
+        //    {
+        //        WebBrowser.LoadingStateChanged -= SetStartupId;
+        //        this.Dispatcher.Invoke(() => {
+        //            WebBrowser.ExecuteScriptAsync("var startUpId = " + VideoId);
+        //        });
+        //    }
+        //}
         #endregion
 
         private bool IsloadingDone()
         {
-            return WebBrowser != null && WebBrowser.WebBrowser != null;
+            return _startupSettingsRun;
         }
 
         private void Start()
@@ -207,10 +218,25 @@ namespace YoutubePlayerLib.Cef
                 WebBrowser.ExecuteScriptAsync("setVolume", volume);
         }
 
+        bool haventRun = true;
         private void SetVideoId(string videoId)
         {
+            if (haventRun)
+            {
+                //if(WebBrowser.WebBrowser == null)
+                //{
+                    //WebBrowser.LoadingStateChanged += SetStartupId;
+                //}
+                //else
+                //{
+                //    WebBrowser.ExecuteScriptAsync("var startUpId = " + VideoId);
+                //}
+                haventRun = false;
+            }
             if (IsloadingDone())
+            {
                 WebBrowser.ExecuteScriptAsync("setVideoId", videoId);
+            }
         }
 
         private void SetAutoPlay(bool autoPlay)

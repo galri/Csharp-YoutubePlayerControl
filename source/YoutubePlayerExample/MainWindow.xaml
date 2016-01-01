@@ -26,9 +26,8 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition />
         </Grid.RowDefinitions>
-        <Cef:CefYoutubeController Name="Player" Grid.RowSpan="5"/>
+        <Cef:CefYoutubeController Name="Player" Grid.RowSpan="5" VideoId="{Binding Text, ElementName=TxtVideoId,UpdateSourceTrigger=Explicit}"/>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
             <Button Command="{Binding StartCommand,ElementName=Player}" Content="Play" />
             <Button Command="{Binding StopCommand,ElementName=Player}" Content="Stop" />
@@ -45,7 +44,7 @@
         <DockPanel Grid.Row="3" Grid.Column="1" >
             <Label Content="VideoId"  VerticalAlignment="Center" />
             <!--Only update binding on button click.-->
-            <TextBox Name="TxtVideoId" Text="{Binding VideoId,ElementName=Player, UpdateSourceTrigger=Explicit}"  VerticalAlignment="Center" Width="80" />
+            <TextBox Name="TxtVideoId"  VerticalAlignment="Center" Width="80" />
             <Button Click="UpdateVideoId" Content="Update ID" />
         </DockPanel>
         <DockPanel Grid.Row="4" Grid.Column="1" >
@@ -62,10 +61,6 @@
             <!--Only update binding on button click.-->
             <ComboBox SelectedItem="{Binding CurrentQuality, ElementName=Player}"
                       ItemsSource="{Binding Source={StaticResource dataFromEnum}}"/>
-        </DockPanel>
-        <DockPanel Grid.Row="5" Grid.Column="1" >
-            <Label Name="LblGetState" Content="wur" />
-            <Button Content="Get state" Click="Button_Click"></Button>
         </DockPanel>
     </Grid>
 </Window>

@@ -61,28 +61,34 @@ namespace YoutubePlayerLib.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;html&gt;
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
         ///	&lt;head&gt;
         ///	&lt;meta charset=&apos;UTF-8&apos; /&gt;
         ///	&lt;style type=&apos;text/css&apos;&gt;
-        ///	body {
-        ///		overflow:hidden;
-        ///	}
-        ///	#player{height:95%; width: 100%;}
+        ///		.videoWrapper {
+        ///			position: relative;
+        ///			padding-bottom: 56.25%; /* 16:9 */
+        ///			padding-top: 25px;
+        ///			height: 0;
+        ///		}
+        ///		.videoWrapper iframe {
+        ///			position: absolute;
+        ///			top: 0;
+        ///			left: 0;
+        ///			width: 100%;
+        ///			height: 100%;
+        ///		}
         ///	&lt;/style&gt;
         ///	&lt;/head&gt;
         ///	&lt;body&gt;
-        ///	&lt;div id=&apos;player&apos;&gt;&lt;/div&gt;
-        ///		&lt;script type=&apos;text/javascript&apos; src=&apos;http://www.youtube.com/player_api&apos;&gt;&lt;/script&gt;
-        ///		&lt;script src=&quot;CefPlayer.js&quot;&gt;&lt;/script&gt;
-        ///		&lt;script type=&apos;text/javascript&apos;&gt;
-        ///			//holds on to player object
-        ///			var player;
+        ///	&lt;div class=&quot;videoWrapper&quot;&gt;
+        ///		&lt;div id=&quot;player&quot;&gt;&lt;/div&gt;
+        ///	&lt;/div&gt;
         ///
-        ///			//create youtubeplayer
-        ///			function onYouTubePlayerAPIReady() {
-        ///				player = new YT.Player(&apos;player&apos;, {
-        /// [rest of string was truncated]&quot;;.
+        ///	&lt;script src=&quot;CefPlayer.js&quot;&gt;&lt;/script&gt;
+        ///	&lt;/body&gt;
+        ///&lt;/html&gt;.
         /// </summary>
         internal static string CefPlayer {
             get {
@@ -91,55 +97,25 @@ namespace YoutubePlayerLib.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to //holds on to player object
-        ///var player;
+        ///   Looks up a localized string similar to // 2. This code loads the IFrame Player API code asynchronously.
+        ///  var tag = document.createElement(&apos;script&apos;);
         ///
-        /////create youtubeplayer
-        ///function onYouTubePlayerAPIReady() {
-        ///	player = new YT.Player(&apos;player&apos;, {
-        ///		height: &apos;100px&apos;,
-        ///		width: &apos;100px&apos;,	
-        ///		videoId: &apos;N3y6KOYlIdc&apos;,
-        ///		frameborder: &apos;1&apos;,
-        ///		playerVars: { &apos;autoplay&apos;: 0 },
-        ///	});
-        ///}
+        ///  tag.src = &quot;https://www.youtube.com/iframe_api&quot;;
+        ///  var firstScriptTag = document.getElementsByTagName(&apos;script&apos;)[0];
+        ///  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         ///
-        ///// autoplay video
-        ///function onPlayerReady(event) {
-        ///	
-        ///}
-        ///
-        ///// when video ends
-        ///function onPlayerStateChange(event) { 
-        ///	jsobject.stateChanged(event.data);
-        ///}
-        ///
-        ///function onPlayerError(errorCode){
-        ///	jsobject.error(errorCode.data);
-        ///}
-        ///        /// [rest of string was truncated]&quot;;.
+        ///  // 3. This function creates an &lt;iframe&gt; (and YouTube player)
+        ///  //    after the API code downloads.
+        ///  var player;
+        ///  var autoPlay = false;
+        ///  var quality = &quot;hd720&quot;;
+        ///  var currentId = &apos;M7lc1UVf-VE&apos;;
+        ///  
+        ///  fun [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CefPlayer1 {
             get {
                 return ResourceManager.GetString("CefPlayer1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;html&gt;
-        ///	&lt;head&gt;
-        ///	&lt;meta charset=&apos;UTF-8&apos; /&gt;
-        ///	&lt;/head&gt;
-        ///	&lt;body&gt;
-        ///	
-        ///&lt;p&gt; hello world &lt;/p&gt;
-        ///&lt;/body&gt;
-        ///&lt;html&gt;.
-        /// </summary>
-        internal static string helloworld {
-            get {
-                return ResourceManager.GetString("helloworld", resourceCulture);
             }
         }
         

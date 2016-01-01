@@ -44,7 +44,6 @@ namespace YoutubePlayerLib.Cef
             ResourceDictionary = new Dictionary<string, string>
             {
                 { "/home.html", Resources.Player },
-                { "/hello.html", Resources.helloworld },
                 { "/CefPlayer.html", Resources.CefPlayer},
                 { "/CefPlayer.js", Resources.CefPlayer1},
 

@@ -10,13 +10,13 @@
   var player;
   var autoPlay = false;
   var quality = "hd720";
-  var currentId = 'M7lc1UVf-VE';
+  var startUpId = 'XIMLoLxmTDw';
   
   function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', {
 	  height: '390',
 	  width: '640',
-	  videoId: 'M7lc1UVf-VE',
+	  videoId: startUpId,
 	  suggestedQuality: "hd720",
 	  events: {
 		'onReady': onPlayerReady,
@@ -53,7 +53,6 @@ function setVolume(volume){
 }
 
 function setVideoId(videoId){
-	currentId = videoId;
 	if(autoPlay){
 		player.loadVideoById(videoId,0,quality);
 	}
