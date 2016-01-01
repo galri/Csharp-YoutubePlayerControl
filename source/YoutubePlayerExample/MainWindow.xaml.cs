@@ -29,5 +29,10 @@ namespace YoutubePlayerExample
         {
             TxtVideoId.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            LblGetState.Content = Player.State;
+        }
     }
 }

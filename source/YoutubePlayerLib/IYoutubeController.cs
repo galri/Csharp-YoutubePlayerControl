@@ -11,10 +11,6 @@ namespace YoutubePlayerLib
     {
         YoutubeQuality CurrentQuality { get; set; }
 
-        YoutubeQuality HighestAvaibleQuality { get; set; }
-
-        YoutubePlayerState State { get; }
-
         string VideoId { get; set; }
 
         int Volume { get; set; }

@@ -10,6 +10,7 @@
   var player;
   var autoPlay = false;
   var quality = "hd720";
+  var currentId = 'M7lc1UVf-VE';
   
   function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', {
@@ -19,7 +20,8 @@
 	  suggestedQuality: "hd720",
 	  events: {
 		'onReady': onPlayerReady,
-		'onStateChange': onPlayerStateChange
+		'onStateChange': onPlayerStateChange,
+		'onPlaybackQualityChange' : onPlayerPlaybackQualityChange
 	  }
 	});
   }
@@ -30,6 +32,10 @@
 
   function onPlayerStateChange(event) {
 
+  }
+  
+  function onPlayerPlaybackQualityChange(event){
+	  bound.qualityChanged();
   }
   
 function setPlayerState(state) {
@@ -47,10 +53,15 @@ function setVolume(volume){
 }
 
 function setVideoId(videoId){
+	currentId = videoId;
 	if(autoPlay){
 		player.loadVideoById(videoId,0,quality);
 	}
 	else{
 		player.cueVideoById(videoId,0,quality);
 	}
+}
+
+function setQuality(quality){
+	player.setPlaybackQuality(quality);
 }

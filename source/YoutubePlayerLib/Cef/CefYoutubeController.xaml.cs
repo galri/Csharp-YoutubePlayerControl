@@ -48,6 +48,9 @@ namespace YoutubePlayerLib.Cef
         private const string stopVideoParam = "stop";
         private const string pausetVideoParam = "pause";
         
+        /// <summary>
+        /// Setting CurrentQuality may take som time, and the IFrame coomponent may ignore the call.
+        /// </summary>
         public YoutubeQuality CurrentQuality
         {
             get { return (YoutubeQuality)GetValue(CurrentQualityProperty); }
@@ -55,39 +58,14 @@ namespace YoutubePlayerLib.Cef
         }
         
         public static readonly DependencyProperty CurrentQualityProperty =
-            DependencyProperty.Register("CurrentQuality", typeof(YoutubeQuality), typeof(CefYoutubeController), new PropertyMetadata(YoutubeQuality.@default,CurrentQualityChanged,CurrentQualityCoarce));
-
-        private static object CurrentQualityCoarce(DependencyObject d, object baseValue)
-        {
-            return baseValue;
-        }
+            DependencyProperty.Register("CurrentQuality", typeof(YoutubeQuality), typeof(CefYoutubeController), new PropertyMetadata(YoutubeQuality.@default,CurrentQualityChanged));
 
         private static void CurrentQualityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            
+            var controller = (CefYoutubeController)d;
+            controller.TryToSetQuality((YoutubeQuality)e.NewValue);
         }
-
-        public YoutubeQuality HighestAvaibleQuality
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public YoutubePlayerState State
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
+        
         public string VideoId
         {
             get { return (string)GetValue(VideoIdProperty); }
@@ -246,7 +224,8 @@ namespace YoutubePlayerLib.Cef
 
         private void TryToSetQuality(YoutubeQuality quality)
         {
-
+            if (IsloadingDone())
+                WebBrowser.ExecuteScriptAsync("setQuality", quality.ToString());
         }
     }
 }

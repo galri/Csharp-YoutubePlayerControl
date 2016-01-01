@@ -26,6 +26,7 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Cef:CefYoutubeController Name="Player" Grid.RowSpan="5"/>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
@@ -61,6 +62,10 @@
             <!--Only update binding on button click.-->
             <ComboBox SelectedItem="{Binding CurrentQuality, ElementName=Player}"
                       ItemsSource="{Binding Source={StaticResource dataFromEnum}}"/>
+        </DockPanel>
+        <DockPanel Grid.Row="5" Grid.Column="1" >
+            <Label Name="LblGetState" Content="wur" />
+            <Button Content="Get state" Click="Button_Click"></Button>
         </DockPanel>
     </Grid>
 </Window>
