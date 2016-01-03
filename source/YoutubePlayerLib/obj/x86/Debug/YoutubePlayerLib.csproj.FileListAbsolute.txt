@@ -28,3 +28,4 @@ C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerCo
 C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerLib\bin\x86\Debug\Microsoft.Practices.ServiceLocation.xml
 C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerLib\obj\x86\Debug\YoutubePlayerLib.Properties.Resources.resources
 C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerLib\obj\x86\Debug\YoutubePlayerLib.dll
+C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerLib\obj\x86\Debug\YoutubePlayerLib.csprojResolveAssemblyReference.cache
