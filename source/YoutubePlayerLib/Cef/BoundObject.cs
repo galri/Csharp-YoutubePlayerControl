@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace YoutubePlayerLib.Cef
 {
@@ -10,6 +11,7 @@ namespace YoutubePlayerLib.Cef
     {
         public event EventHandler PlayerLoadingDone;
         public event EventHandler PlayerQualityChanged;
+        public event EventHandler<YoutubePlayerState> PlayerPlayingChanged;
 
         public void PlayerLoaded()
         {
@@ -21,10 +23,12 @@ namespace YoutubePlayerLib.Cef
 
         public void qualityChanged()
         {
-            if (PlayerQualityChanged != null)
-            {
-                PlayerQualityChanged(this, new EventArgs());
-            }
+            PlayerQualityChanged?.Invoke(this, new EventArgs());
+        }
+
+        public void PlayingChanged(int state)
+        {
+            PlayerPlayingChanged?.Invoke(this, state.ParseToYoutubeState());
         }
     }
 }
