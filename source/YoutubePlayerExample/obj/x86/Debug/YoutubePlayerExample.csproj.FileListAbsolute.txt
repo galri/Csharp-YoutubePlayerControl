@@ -1,9 +1,3 @@
-C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\obj\x86\Debug\App.g.cs
-C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\obj\x86\Debug\YoutubePlayerExample_MarkupCompile.cache
-C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\obj\x86\Debug\YoutubePlayerExample_MarkupCompile.lref
-C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\obj\x86\Debug\YoutubePlayerExample.csprojResolveAssemblyReference.cache
-C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\obj\x86\Debug\MainWindow.g.cs
 C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\bin\x86\Debug\YoutubePlayerExample.exe.config
 C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\bin\x86\Debug\YoutubePlayerExample.exe
 C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\bin\x86\Debug\YoutubePlayerExample.pdb
@@ -28,6 +22,12 @@ C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerCo
 C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\bin\x86\Debug\GalaSoft.MvvmLight.Platform.xml
 C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\bin\x86\Debug\Microsoft.Practices.ServiceLocation.pdb
 C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\bin\x86\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\obj\x86\Debug\YoutubePlayerExample.csprojResolveAssemblyReference.cache
+C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\obj\x86\Debug\MainWindow.g.cs
+C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\obj\x86\Debug\App.g.cs
+C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\obj\x86\Debug\YoutubePlayerExample_MarkupCompile.cache
+C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\obj\x86\Debug\YoutubePlayerExample_MarkupCompile.lref
 C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\obj\x86\Debug\App.baml
 C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\obj\x86\Debug\MainWindow.baml
 C:\Users\stian\Documents\programming\youtubePlayerControl\Csharp-YoutubePlayerControl\source\YoutubePlayerExample\obj\x86\Debug\YoutubePlayerExample.g.resources

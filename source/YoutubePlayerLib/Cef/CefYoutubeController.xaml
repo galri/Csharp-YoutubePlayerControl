@@ -5,9 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:YoutubePlayerLib"
              xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" ScrollViewer.VerticalScrollBarVisibility="Disabled"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <cefSharp:ChromiumWebBrowser Grid.Row="0" Name="WebBrowser" />
-    </Grid>
+    <cefSharp:ChromiumWebBrowser Grid.Row="0" Name="WebBrowser" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
 </UserControl>
