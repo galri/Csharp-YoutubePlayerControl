@@ -32,6 +32,7 @@
 
   function onPlayerStateChange(event) {
 
+    bound.playingChanged(event.data);
   }
   
   function onPlayerPlaybackQualityChange(event){

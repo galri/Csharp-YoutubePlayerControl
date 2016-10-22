@@ -7,5 +7,5 @@
              xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
              mc:Ignorable="d" ScrollViewer.VerticalScrollBarVisibility="Disabled"
              d:DesignHeight="300" d:DesignWidth="300">
-    <cefSharp:ChromiumWebBrowser Grid.Row="0" Name="WebBrowser" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+    <cefSharp:ChromiumWebBrowser Grid.Row="0" Name="WebBrowser" />
 </UserControl>

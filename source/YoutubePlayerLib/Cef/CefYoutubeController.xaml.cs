@@ -46,7 +46,7 @@ namespace YoutubePlayerLib.Cef
         private const string startVideoParam = "start";
         private const string stopVideoParam = "stop";
         private const string pausetVideoParam = "pause";
-        
+
         /// <summary>
         /// Setting CurrentQuality may take som time, and the IFrame coomponent may ignore the call.
         /// </summary>
@@ -55,22 +55,22 @@ namespace YoutubePlayerLib.Cef
             get { return (YoutubeQuality)GetValue(CurrentQualityProperty); }
             set { SetValue(CurrentQualityProperty, value); }
         }
-        
+
         public static readonly DependencyProperty CurrentQualityProperty =
-            DependencyProperty.Register("CurrentQuality", typeof(YoutubeQuality), typeof(CefYoutubeController), new PropertyMetadata(YoutubeQuality.@default,CurrentQualityChanged));
+            DependencyProperty.Register("CurrentQuality", typeof(YoutubeQuality), typeof(CefYoutubeController), new PropertyMetadata(YoutubeQuality.@default, CurrentQualityChanged));
 
         private static void CurrentQualityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var controller = (CefYoutubeController)d;
             controller.TryToSetQuality((YoutubeQuality)e.NewValue);
         }
-        
+
         public string VideoId
         {
             get { return (string)GetValue(VideoIdProperty); }
             set { SetValue(VideoIdProperty, value); }
         }
-        
+
         public static readonly DependencyProperty VideoIdProperty =
             DependencyProperty.Register("VideoId", typeof(string), typeof(CefYoutubeController), new PropertyMetadata("", VideoIdChanged));
 
@@ -85,9 +85,9 @@ namespace YoutubePlayerLib.Cef
             get { return (int)GetValue(VolumeProperty); }
             set { SetValue(VolumeProperty, value); }
         }
-        
+
         public static readonly DependencyProperty VolumeProperty =
-            DependencyProperty.Register("Volume", typeof(int), typeof(CefYoutubeController), new PropertyMetadata(100,VolumeCanged));
+            DependencyProperty.Register("Volume", typeof(int), typeof(CefYoutubeController), new PropertyMetadata(100, VolumeCanged));
 
         //Need to change here and not in property because sometimes the propertie set might not be called in bindings.
         private static void VolumeCanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -115,22 +115,62 @@ namespace YoutubePlayerLib.Cef
             playerControler.SetAutoPlay((bool)e.NewValue);
         }
 
-        public ICommand StartCommand
+        public static readonly DependencyProperty PlayerStateProperty = DependencyProperty.Register(
+            "PlayerState", typeof(YoutubePlayerState), typeof(CefYoutubeController), 
+            new PropertyMetadata(YoutubePlayerState.unknownvalue, PlayerStateChanged));
+
+        private static void PlayerStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            get;
+            var p = (CefYoutubeController) d;
+            var newValue = (YoutubePlayerState) e.NewValue;
+
+            switch (newValue)
+            {
+                case YoutubePlayerState.unstarted:
+                    break;
+                case YoutubePlayerState.ended:
+                    p.Stop();
+                    break;
+                case YoutubePlayerState.playing:
+                    p.Start();
+                    break;
+                case YoutubePlayerState.paused:
+                    p.Pause();
+                    break;
+                case YoutubePlayerState.buffering:
+                    break;
+                case YoutubePlayerState.videoCued:
+                    break;
+                case YoutubePlayerState.unknownvalue:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
-        public ICommand StopCommand
+        /// <summary>
+        /// State of player.
+        /// note that setting state value to anything other than 
+        /// Ended(stop), playing(play) or paused(pause) will be ignored.
+        /// </summary>
+        public YoutubePlayerState PlayerState
         {
-            get;
+            get { return (YoutubePlayerState) GetValue(PlayerStateProperty); }
+            set { SetValue(PlayerStateProperty, value); }
         }
+
+        public ICommand StartCommand { get; }
+
+        public ICommand StopCommand { get; }
 
         public ICommand PauseCommand { get; }
 
         #region startup
+
         private bool _browserLoaded = false;
         private bool _iframePlayerLoaded = false;
         private bool _startupSettingsRun = false;
+
         public CefYoutubeController()
         {
             InitializeComponent();
@@ -139,6 +179,7 @@ namespace YoutubePlayerLib.Cef
             WebBrowser.LoadingStateChanged += CheckkIfLoadingDone;
             var bound = new BoundObject();
             bound.PlayerLoadingDone += JavascriptReady;
+            bound.PlayerPlayingChanged += BoundOnPlayerPlayingChanged;
             WebBrowser.RegisterJsObject("bound", bound);
 
             StartCommand = new Command(Start);
@@ -146,15 +187,28 @@ namespace YoutubePlayerLib.Cef
             PauseCommand = new Command(() => WebBrowser.ExecuteScriptAsync("setPlayerState", pausetVideoParam));
         }
 
+        private void Pause()
+        {
+            WebBrowser.ExecuteScriptAsync("setPlayerState", pausetVideoParam);
+        }
+
+        private void BoundOnPlayerPlayingChanged(object sender, YoutubePlayerState e)
+        {
+            Dispatcher.Invoke(() => PlayerState = e);
+        }
+
+        private void Stop()
+        {
+            WebBrowser.ExecuteScriptAsync("setPlayerState", stopVideoParam);
+        }
+
         private void CheckkIfLoadingDone(object sender, LoadingStateChangedEventArgs e)
         {
-            if(WebBrowser != null)
+            if (WebBrowser != null)
             {
                 WebBrowser.LoadingStateChanged -= CheckkIfLoadingDone;
                 _browserLoaded = true;
-                this.Dispatcher.Invoke(() => {
-                    CheckForStartupSettings();
-                });
+                this.Dispatcher.Invoke(() => { CheckForStartupSettings(); });
             }
         }
 
@@ -164,10 +218,7 @@ namespace YoutubePlayerLib.Cef
         private void JavascriptReady(object sender, EventArgs e)
         {
             _iframePlayerLoaded = true;
-            Dispatcher.Invoke(() =>
-            {
-                CheckForStartupSettings();
-            });
+            Dispatcher.Invoke(() => { CheckForStartupSettings(); });
         }
 
         /// <summary>
@@ -175,14 +226,14 @@ namespace YoutubePlayerLib.Cef
         /// </summary>
         private void CheckForStartupSettings()
         {
-            if(_iframePlayerLoaded && _browserLoaded && !_startupSettingsRun)
+            if (_iframePlayerLoaded && _browserLoaded && !_startupSettingsRun)
             {
                 _startupSettingsRun = true;
                 SetAutoPlay(AutoPlay);
                 SetVideoId(VideoId);
                 SetVolume(Volume);
             }
-            else if(_iframePlayerLoaded && _browserLoaded && _startupSettingsRun)
+            else if (_iframePlayerLoaded && _browserLoaded && _startupSettingsRun)
             {
                 Console.WriteLine(string.Format("Trying to call CheckForStartupSettings after already being called once!"));
             }
@@ -198,6 +249,7 @@ namespace YoutubePlayerLib.Cef
         //        });
         //    }
         //}
+
         #endregion
 
         private bool IsloadingDone()
@@ -207,7 +259,7 @@ namespace YoutubePlayerLib.Cef
 
         private void Start()
         {
-            if(IsloadingDone())
+            if (IsloadingDone())
                 WebBrowser.ExecuteScriptAsync("setPlayerState", startVideoParam);
         }
 
@@ -218,13 +270,14 @@ namespace YoutubePlayerLib.Cef
         }
 
         bool haventRun = true;
+
         private void SetVideoId(string videoId)
         {
             if (haventRun)
             {
                 //if(WebBrowser.WebBrowser == null)
                 //{
-                    //WebBrowser.LoadingStateChanged += SetStartupId;
+                //WebBrowser.LoadingStateChanged += SetStartupId;
                 //}
                 //else
                 //{

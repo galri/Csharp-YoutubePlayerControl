@@ -26,6 +26,7 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Cef:CefYoutubeController Name="Player" Grid.RowSpan="5" VideoId="{Binding Text, ElementName=TxtVideoId,UpdateSourceTrigger=Explicit}" Margin="5"/>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
@@ -56,11 +57,31 @@
                         <x:Type TypeName="YTPL:YoutubeQuality"/>
                     </ObjectDataProvider.MethodParameters>
                 </ObjectDataProvider>
+                <ObjectDataProvider x:Key="dataFromEnum2" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+                    <ObjectDataProvider.MethodParameters>
+                        <x:Type TypeName="YTPL:YoutubePlayerState"/>
+                    </ObjectDataProvider.MethodParameters>
+                </ObjectDataProvider>
             </DockPanel.Resources>
             <Label Content="PrefferdQuality"  VerticalAlignment="Center" />
             <!--Only update binding on button click.-->
             <ComboBox SelectedItem="{Binding CurrentQuality, ElementName=Player}"
                       ItemsSource="{Binding Source={StaticResource dataFromEnum}}"/>
+
+        </DockPanel>
+        <DockPanel Grid.Row="5" Grid.Column="1" >
+            <DockPanel.Resources>
+                <ObjectDataProvider x:Key="dataFromEnum2" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="YTPL:YoutubePlayerState"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            </DockPanel.Resources>
+            <Label Content="Playing" />
+            <ComboBox SelectedItem="{Binding PlayerState, ElementName=Player}"
+                      ItemsSource="{Binding Source={StaticResource dataFromEnum2}}"/>
         </DockPanel>
     </Grid>
 </Window>
