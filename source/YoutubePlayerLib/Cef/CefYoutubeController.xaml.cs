@@ -1,6 +1,5 @@
 ﻿using CefSharp;
 using CefSharp.Wpf;
-using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -142,9 +141,9 @@ namespace YoutubePlayerLib.Cef
             bound.PlayerLoadingDone += JavascriptReady;
             WebBrowser.RegisterJsObject("bound", bound);
 
-            StartCommand = new RelayCommand(Start);
-            StopCommand = new RelayCommand(() => WebBrowser.ExecuteScriptAsync("setPlayerState", stopVideoParam));
-            PauseCommand = new RelayCommand(() => WebBrowser.ExecuteScriptAsync("setPlayerState", pausetVideoParam));
+            StartCommand = new Command(Start);
+            StopCommand = new Command(() => WebBrowser.ExecuteScriptAsync("setPlayerState", stopVideoParam));
+            PauseCommand = new Command(() => WebBrowser.ExecuteScriptAsync("setPlayerState", pausetVideoParam));
         }
 
         private void CheckkIfLoadingDone(object sender, LoadingStateChangedEventArgs e)
