@@ -16,7 +16,7 @@ A usercontrols that wraps a [CefSharp](https://github.com/cefsharp/CefSharp). Th
 - x86 builds can use [nuge package](https://www.nuget.org/packages/galri.Csharp-YoutubePlayerControl):
 - x64 builds must download source, compile, and reference dll's.
 #### Bindings
-See example project in project.
+See example project in solution.
 
 ## NB!
 - As noted in the iframe api, trying to change the quality of a video, may be ignored by the iframeplayer.
