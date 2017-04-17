@@ -67,10 +67,7 @@ namespace YoutubePlayerLib.Properties {
         ///	&lt;meta charset=&apos;UTF-8&apos; /&gt;
         ///	&lt;style type=&apos;text/css&apos;&gt;
         ///		.videoWrapper {
-        ///			position: relative;
-        ///			padding-bottom: 56.25%; /* 16:9 */
-        ///			padding-top: 25px;
-        ///			height: 0;
+        ///
         ///		}
         ///		.videoWrapper iframe {
         ///			position: absolute;
@@ -109,7 +106,7 @@ namespace YoutubePlayerLib.Properties {
         ///  var player;
         ///  var autoPlay = false;
         ///  var quality = &quot;hd720&quot;;
-        ///  var currentId = &apos;M7lc1UVf-VE&apos;;
+        ///  var startUpId = &apos;XIMLoLxmTDw&apos;;
         ///  
         ///  fun [rest of string was truncated]&quot;;.
         /// </summary>

@@ -37,7 +37,13 @@ namespace YoutubePlayerLib.Cef
                 SchemeHandlerFactory = new CefSharpSchemeHandlerFactory()
             });
 
-            if (!CefSharp.Cef.Initialize(settings, shutdownOnProcessExit: true, performDependencyCheck: !DebuggingSubProcess))
+            //if (!CefSharp.Cef.Initialize(settings, shutdownOnProcessExit: true, performDependencyCheck: !DebuggingSubProcess))
+            //{
+            //    throw new Exception("Unable to Initialize Cef");
+            //}
+
+            // The changes for Initialize, but not sure working perfectly.
+            if (!CefSharp.Cef.Initialize(settings))
             {
                 throw new Exception("Unable to Initialize Cef");
             }
