@@ -28,7 +28,7 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Cef:CefYoutubeController Name="Player" Grid.RowSpan="5" VideoId="{Binding Text, ElementName=TxtVideoId,UpdateSourceTrigger=Explicit}" Margin="5"/>
+        <Cef:CefYoutubeController Name="Player" Grid.RowSpan="6" VideoId="{Binding Text, ElementName=TxtVideoId,UpdateSourceTrigger=Explicit}" Margin="5"/>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
             <Button Command="{Binding StartCommand,ElementName=Player}" Content="Play" />
             <Button Command="{Binding StopCommand,ElementName=Player}" Content="Stop" />

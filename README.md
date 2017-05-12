@@ -11,6 +11,9 @@ The same restrictions as IFrame api have. All videos that are not private, embed
 ## Under the hood.
 A usercontrols that wraps a [CefSharp](https://github.com/cefsharp/CefSharp). The webcontrol contains a youtube embedded player which the usercontrol communicates with. 
 
+# Requirments
+See requirments of used [cefsharp](https://github.com/cefsharp/CefSharp/tree/master/NuGet)
+
 ## Usage
 #### Reference
 - x86 builds can use [nuge package](https://www.nuget.org/packages/galri.Csharp-YoutubePlayerControl):
