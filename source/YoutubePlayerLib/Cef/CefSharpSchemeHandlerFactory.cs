@@ -23,7 +23,7 @@ namespace YoutubePlayerLib.Cef
             if (schemeName == SchemeName && request.Url.EndsWith("CefSharp.Core.xml", System.StringComparison.OrdinalIgnoreCase))
             {
                 //Display the debug.log file in the browser
-                return ResourceHandler.FromFileName("CefSharp.Core.xml", ".xml");
+                return ResourceHandler.FromFilePath("CefSharp.Core.xml", ".xml");
             }
             return new CefSharpSchemeHandler();
         }
@@ -31,7 +31,8 @@ namespace YoutubePlayerLib.Cef
 
     /// <summary>
     /// Shamlessly copypasted from CEFSharp example project.
-    /// </summary>
+    /// </summary> 
+
     internal class CefSharpSchemeHandler : IResourceHandler
     {
         private static readonly IDictionary<string, string> ResourceDictionary;
@@ -68,10 +69,12 @@ namespace YoutubePlayerLib.Cef
                 //{ "/FramedWebGLTest.html", Resources.FramedWebGLTest },
                 //{ "/MultiBindingTest.html", Resources.MultiBindingTest },
                 //{ "/ScriptedMethodsTest.html", Resources.ScriptedMethodsTest },
+                //{ "/ResponseFilterTest.html", Resources.ResponseFilterTest },
+                //{ "/DraggableRegionTest.html", Resources.DraggableRegionTest }
             };
         }
 
-        public bool ProcessRequestAsync(IRequest request, ICallback callback)
+        bool IResourceHandler.ProcessRequest(IRequest request, ICallback callback)
         {
             // The 'host' portion is entirely ignored by this scheme handler.
             var uri = new Uri(request.Url);
@@ -109,6 +112,15 @@ namespace YoutubePlayerLib.Cef
                 return true;
             }
 
+            if (string.Equals(fileName, "/EmptyResponseFilterTest.html", StringComparison.OrdinalIgnoreCase))
+            {
+                stream = null;
+                mimeType = "text/html";
+                callback.Continue();
+
+                return true;
+            }
+
             string resource;
             if (ResourceDictionary.TryGetValue(fileName, out resource) && !string.IsNullOrEmpty(resource))
             {
@@ -136,16 +148,56 @@ namespace YoutubePlayerLib.Cef
             return false;
         }
 
-        public Stream GetResponse(IResponse response, out long responseLength, out string redirectUrl)
+
+        void IResourceHandler.GetResponseHeaders(IResponse response, out long responseLength, out string redirectUrl)
         {
-            responseLength = stream.Length;
+            responseLength = stream == null ? 0 : stream.Length;
             redirectUrl = null;
 
             response.StatusCode = (int)HttpStatusCode.OK;
             response.StatusText = "OK";
             response.MimeType = mimeType;
+        }
 
-            return stream;
+        bool IResourceHandler.ReadResponse(Stream dataOut, out int bytesRead, ICallback callback)
+        {
+            //Dispose the callback as it's an unmanaged resource, we don't need it in this case
+            callback.Dispose();
+
+            if (stream == null)
+            {
+                bytesRead = 0;
+                return false;
+            }
+
+            //Data out represents an underlying buffer (typically 32kb in size).
+            var buffer = new byte[dataOut.Length];
+            bytesRead = stream.Read(buffer, 0, buffer.Length);
+
+            dataOut.Write(buffer, 0, buffer.Length);
+
+            return bytesRead > 0;
+        }
+
+        bool IResourceHandler.CanGetCookie(CefSharp.Cookie cookie)
+        {
+            return true;
+        }
+
+        bool IResourceHandler.CanSetCookie(CefSharp.Cookie cookie)
+        {
+            return true;
+        }
+
+        void IResourceHandler.Cancel()
+        {
+
+        }
+
+        void IDisposable.Dispose()
+        {
+
         }
     }
+
 }
